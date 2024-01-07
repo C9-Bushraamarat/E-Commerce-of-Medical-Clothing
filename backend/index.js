@@ -14,6 +14,8 @@ const userRouter=require("./routes/userRouter");
 app.use("/users",userRouter)
 const roleRouter=require("./routes/roleRouter");
 app.use("/roles",roleRouter)
+const productRouter=require("./routes/productRouter");
+app.use("/products",productRouter)
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
 });
