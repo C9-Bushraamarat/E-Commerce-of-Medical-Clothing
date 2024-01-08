@@ -3,7 +3,8 @@ const createNewProduct = (req, res) => {
   const { image, name, description, color, price, size, category } = req.body;
   const newProduct=new productModel({
     image, name, description, color, price, size, category
-  }).save()
+  })
+  newProduct.save()
   .then((result)=>{
     res.status(201).json(result)
   }).catch((err)=>{

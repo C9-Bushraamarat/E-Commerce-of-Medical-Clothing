@@ -16,6 +16,10 @@ const roleRouter=require("./routes/roleRouter");
 app.use("/roles",roleRouter)
 const productRouter=require("./routes/productRouter");
 app.use("/products",productRouter)
+const categoryRouter=require("./routes/categoryRouter")
+app.use("/categories",categoryRouter)
+const cartRouter=require("./routes/cartRouter")
+app.use("/cart",cartRouter)
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
 });
