@@ -38,8 +38,34 @@ const getAllProducts=(req,res)=>{
     });
   })
 };
-co
+const getProductById=(req,res)=>{
+  let id=req.params.id;
+  productModel.
+  findById(id)
+  .populate("category")
+  .exec()
+  .then((product)=>{
+    if(!product) {
+      return  res.status(404).json({
+        success:false,
+        message:`The article with id => ${id} not found`
+      });
+    }else{
+      res.status(200).json({
+        success:true,
+        message:`The article ${id}`,
+        product:product,
+      });
+    }
+  }).catch((err)=>{
+    res.status(500).json({
+      success:false,
+      message:`Server Error`,
+      err:err.message
+    });
+  })
+}
 // const removeById=(req,res)=>{
 
 // }
-module.exports={createNewProduct,getAllProducts};
+module.exports={createNewProduct,getAllProducts,getProductById};
