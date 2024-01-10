@@ -88,5 +88,34 @@ productModel
     err:err.message,
   });
 })
- }
-module.exports={createNewProduct,getAllProducts,getProductById,removeProductById};
+ };
+ const updateProductById=(req,res)=>{
+  const id=req.params.id;
+  const filter=req.body;
+  Object.keys(filter).forEach((key)=>{
+    filter[key].toString().replaceAll(" ","")==""&& delete filter[key];
+  });
+  productModel.findByIdAndUpdate({_id:id},req.body, {new:true})
+  .then((newProduct)=>{
+    if(!newProduct) {
+      return res.status(404).json({
+        success:false,
+        message:`The product with id => ${id} not found`
+      });
+    
+    }else{
+      res.status(202).json({
+        success:true,
+        message:`Product Updated`,
+        product: newProduct
+      })
+    }
+  }).catch((err)=>{
+    res.status(500).json({
+      success:false,
+      message:`ServerError`,
+      err:err.message,
+    })
+  })
+ };
+module.exports={createNewProduct,getAllProducts,getProductById,removeProductById,updateProductById};
