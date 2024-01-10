@@ -9,4 +9,30 @@ const createNewCategory = (req, res) => {
     res.json(err);
   })
 };
-module.exports={createNewCategory};
+const getAllCategory=(req,res)=>{
+  categoryModel.find().exec()
+  .then((categories)=>{
+    if(categories.length){
+      res.status(200).json({
+        success:true,
+        message:`All The Categories`,
+        categories:categories
+      })
+    }else{
+      res.status(200).json({
+        success:false,
+        message:`No categories Yet`
+      })
+    }
+  }).catch((err)=>{
+    res.status(500).json({
+      success:false,
+      message:`Server Error`,
+      err:err.message
+    })
+  })
+};
+const getCategoryById=(req,res)=>{
+
+}
+module.exports={createNewCategory,getAllCategory};
