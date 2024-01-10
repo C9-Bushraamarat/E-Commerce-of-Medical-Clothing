@@ -64,8 +64,29 @@ const getProductById=(req,res)=>{
       err:err.message
     });
   })
-}
-// const removeById=(req,res)=>{
-
-// }
-module.exports={createNewProduct,getAllProducts,getProductById};
+};
+const removeProductById=(req,res)=>{
+const id=req.params.id;
+productModel
+.findByIdAndDelete(id)
+.then((result)=>{
+  if(!result){
+    return res.status(404).json({
+      success:false,
+      message:`The article with id => ${id} not found`,
+    });
+  }else{
+    res.status(200).json({
+      success:true,
+      message:`Product Deleted`,
+    });
+  }
+}).catch((err)=>{
+  res.status(500).json({
+    success:false,
+    message:`Server Error`,
+    err:err.message,
+  });
+})
+ }
+module.exports={createNewProduct,getAllProducts,getProductById,removeProductById};
