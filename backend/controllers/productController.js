@@ -42,4 +42,4 @@ const getAllProducts=(req,res)=>{
 // const removeById=(req,res)=>{
 
 // }
-module.exports={createNewProduct};
+module.exports={createNewProduct,getAllProducts};
