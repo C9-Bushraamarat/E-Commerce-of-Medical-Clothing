@@ -33,6 +33,28 @@ const getAllCategory=(req,res)=>{
   })
 };
 const getCategoryById=(req,res)=>{
+let id=req.params.id;
+categoryModel.findById(id)
+.exec()
+.then((category)=>{
+  if(!category){
+res.status(404).json({
+  success:false,
+  message:`The category with id => ${id} not found`
+})
+  }else{
+    res.status(200).json({
+      success:true,
+      message:`The category ${id}`,
+    })
+  }
+}).catch((err)=>{
+  res.status(500).json({
+    success:false,
+    message:`Server Error`,
+    err:err.message,
+  })
+})
 
 }
-module.exports={createNewCategory,getAllCategory};
+module.exports={createNewCategory,getAllCategory,getCategoryById};
