@@ -15,14 +15,13 @@ const createNewProduct = (req, res) => {
 //get allprou,,remove product by id ,get by id ,,
 const getAllProducts=(req,res)=>{
   productModel.find()
-  .populate("Category")
+  .populate("category")
   .exec()
   .then((products)=>{
     if(products.length){
       res.status(200).json({
         success:true,
         message:'All the products',
-        productId:productId,
         products:products
       });
     }else{
@@ -39,6 +38,7 @@ const getAllProducts=(req,res)=>{
     });
   })
 };
+co
 // const removeById=(req,res)=>{
 
 // }
