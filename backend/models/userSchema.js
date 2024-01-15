@@ -6,16 +6,7 @@ const userSchema = new mongoose.Schema({
   lastName: { type: String },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  cart: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Cart",
-      total: {
-        type: Number,
-        default: 0,
-      },
-    },
-  ],
+
   role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" },
 });
 

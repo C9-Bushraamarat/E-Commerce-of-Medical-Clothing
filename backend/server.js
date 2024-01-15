@@ -21,6 +21,10 @@ const categoryRouter=require("./routes/categoryRouter")
 app.use("/categories",categoryRouter)
 const cartRouter=require("./routes/cartRouter")
 app.use("/cart",cartRouter)
+
+const checkOutRouter=require("./routes/checkout")
+app.use("/ch",checkOutRouter)
+
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
 });

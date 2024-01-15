@@ -1,22 +1,29 @@
 const userModel = require("../models/userSchema");
+const cartModel = require("../models/cartSchema");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+
 const Register = (req, res) => {
-  const { firstName, lastName, email, password,cart, role } = req.body;
+  const { firstName, lastName, email, password, role } = req.body;
   const newUser = new userModel({
     firstName,
     lastName,
     email,
     password,
-    cart,
     role: "659a742b043a900ce14aecdc",
-    
   });
   newUser
     .save()
-    .then((result) => {
+    .then(async (responce) => {
+      const result = await new cartModel({
+        userId: responce._id,
+        products: [],
+        total: 0,
+      });
+
       res.status(201).json({
-        result: result,
+        cart:result,
+        responce: responce,
         message: "Account Created Successfully",
       });
     })
@@ -36,10 +43,10 @@ const Register = (req, res) => {
 };
 
 const Login = (req, res) => {
-  const {email,password} = req.body;
+  const { email, password } = req.body;
   userModel
     .findOne({ email })
-    .populate("role","-_id")
+    .populate("role", "-_id")
     .then(async (result) => {
       console.log(result);
       if (!result) {
@@ -47,36 +54,36 @@ const Login = (req, res) => {
           success: false,
           message: `The email doesn't exist or The password you’ve entered is incorrect`,
         });
-      }
-else{
-      try {
-        const valid = await bcrypt.compare(password, result.password);
-        console.log("valid:>>", valid);
-        if (!valid) {
-          return res.status(403).json({
-            success: false,
-            message: `The email doesn't exist or The password you’ve entered is incorrect`,
-          });
-        } else {
-          const payload = {
-            userId: result._id,
-            author: result.firstName,
-            role: result.role,
-          };
-          const options = {
-            expiresIn: "60m",
-          };
-          const token = jwt.sign(payload, process.env.SECRET, options);
-          res.status(200).json({
-            success: true,
-            message: `Valid login credentials`,
-            token: token,
-          });
+      } else {
+        try {
+          const valid = await bcrypt.compare(password, result.password);
+          console.log("valid:>>", valid);
+          if (!valid) {
+            return res.status(403).json({
+              success: false,
+              message: `The email doesn't exist or The password you’ve entered is incorrect`,
+            });
+          } else {
+            const payload = {
+              userId: result._id,
+              author: result.firstName,
+              role: result.role,
+            };
+            const options = {
+              expiresIn: "60m",
+            };
+            const token = jwt.sign(payload, process.env.SECRET, options);
+            res.status(200).json({
+              success: true,
+              message: `Valid login credentials`,
+              token: token,
+            });
+          }
+        } catch (error) {
+          throw new Error(error.message);
         }
-      } catch (error) {
-        throw new Error(error.message);
       }
- } })
+    })
     .catch((err) => {
       res.status(500).json({
         success: false,

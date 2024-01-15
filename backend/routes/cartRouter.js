@@ -1,6 +1,7 @@
 const express = require("express");
 const cartRouter = express.Router();
-const  { newItemCart }  = require("../controllers/cartController");
+const  { createCart,getCart }  = require("../controllers/cartController");
 
-cartRouter.post("/newcart/:userid",newItemCart);
+//  cartRouter.post("/newcart",createCart);
+cartRouter.get("/getCart",getCart)
 module.exports = cartRouter;
