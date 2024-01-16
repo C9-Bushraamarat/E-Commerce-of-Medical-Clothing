@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navbar.css";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
@@ -11,9 +11,10 @@ import Col from "react-bootstrap/Col";
 import text from "../Images/text.png";
 import cart from "../Images/cart.ico";
 const Navbar1 = () => {
+  const[menu,setMenu]=useState("Home")
   return (
     <>
-      <Navbar className="bg-body-tertiary">
+      <Navbar className="bg-body-tertiary" >
         <Container>
           <Navbar.Brand href="#home">
             <img
@@ -46,18 +47,18 @@ const Navbar1 = () => {
               </Col>
             </Row>
           </Form>
-          <div style={{display:"flex",gap:"1rem"}}>
+          <div className="nav-login-cart" style={{display:"flex",gap:"1rem",float:"right",alignItems:"center"}}>
            
-              <Button variant="outline-dark" style={{float:"right"}}>Login</Button>
-              <div style={{float:"right"}}>
+              <Button variant="outline-dark">Login</Button>
+              <div style={{cursor:"pointer"}} >
               <img src={cart} alt="" height="30px" width="30px" />
             
               </div>
-           
+           <div className="nav-cart-count" style={{cursor:"pointer"}}>0</div>
           
             </div>
         </Container>
-      </Navbar>
+      </Navbar >
       <Nav
         variant="tabs"
         defaultActiveKey="/home"
@@ -66,27 +67,32 @@ const Navbar1 = () => {
         style={{ backgroundColor: "#0d6efd" }}
       >
         <Nav.Item>
-          <Nav.Link className="link1" style={{ color: "black" }} href="/home">
-            Scrubs
+          <Nav.Link  style={{ color: "black" }} href="/home"onClick={()=>{}}>
+            Home
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link style={{ color: "black" }} eventKey="link-1">
+          <Nav.Link style={{ color: "black" }} eventKey="link-1"onClick={()=>{}}>
+          Scrubs
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link style={{ color: "black" }} eventKey="link-2"onClick={()=>{}}>
             Lab Coats
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link style={{ color: "black" }} eventKey="link-2">
+          <Nav.Link style={{ color: "black" }} eventKey="link-3" onClick={()=>{}}>
             Fleece Jacket
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link style={{ color: "black" }} eventKey="link-3">
+          <Nav.Link style={{ color: "black" }} eventKey="link-4" onClick={()=>{}}>
             Medical Shoes
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link style={{ color: "black" }} eventKey="link-4">
+          <Nav.Link style={{ color: "black" }} eventKey="link-5"onClick={()=>{}}>
             Socks
           </Nav.Link>
         </Nav.Item>
