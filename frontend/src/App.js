@@ -1,9 +1,15 @@
 import "./App.css";
-import Login from "./components/Login/Login";
+import Login from "./pages/LoginSignUp";
 import Navbar1 from "./components/Navbar/Navbar";
-import { useState, createContext } from "react";
+import { useState} from "react";
 import { Routes, Route, Link } from "react-router-dom";
-export const userContext = createContext();
+import LoginSignUp from "./pages/LoginSignUp";
+import Home from "./pages/Home"
+import Cart from "./pages/Cart"
+import ShopCategory from "./pages/ShopCategory"
+import Products from "./pages/Products"
+// export const userContext = createContext("");
+
 
 // import useState , Routes , Route, createcontext
 //  export default userContext=create context()
@@ -19,14 +25,26 @@ default(local.getItem("token"))
     1-context.provders values={{toke, setToke, logeedin , setLoggedin}}
     2- Routes ,Routes for each element
     */
-    <userContext.Provider
-      values={{ token, setToken, isLoggedIn, setIsLoggedIn }}
-    >
+    // <userContext.Provider
+    //   values={{ token, setToken, isLoggedIn, setIsLoggedIn }}
+    // >
       <div className="App">
-        
         <Navbar1/>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/scrubs" element={<ShopCategory category="scrub"/>}/>
+          <Route path="/labCoats" element={<ShopCategory category="labCoat"/>}/>
+          <Route path="/fleeceJackets" element={<ShopCategory category="fleeceJacket"/>}/>
+          <Route path="/medicalShoes" element={<ShopCategory category="shoes"/>}/>
+          <Route path="/socks" element={<ShopCategory category="socks"/>}/>
+          <Route path="/product" element={<Products/>}>
+            <Route path=":productId" element={<Products/>}/>
+          </Route>
+          <Route path="/cart" element={<Cart/>}/>
+          <Route path="/login" element={<LoginSignUp/>}/>
+        </Routes>
       </div>
-    </userContext.Provider>
+    // </userContext.Provider>
   );
 }
 

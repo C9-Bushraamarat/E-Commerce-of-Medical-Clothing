@@ -10,6 +10,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import text from "../Images/text.png";
 import cart from "../Images/cart.ico";
+import { Link } from "react-router-dom";
+
 const Navbar1 = () => {
   const[menu,setMenu]=useState("Home")
   return (
@@ -49,9 +51,9 @@ const Navbar1 = () => {
           </Form>
           <div className="nav-login-cart" style={{display:"flex",gap:"1rem",float:"right",alignItems:"center"}}>
            
-              <Button variant="outline-dark">Login</Button>
+             <Link to='/login'><Button variant="outline-dark">Login</Button></Link> 
               <div style={{cursor:"pointer"}} >
-              <img src={cart} alt="" height="30px" width="30px" />
+             <Link to='/cart'><img src={cart} alt="" height="30px" width="30px" /></Link> 
             
               </div>
            <div className="nav-cart-count" style={{cursor:"pointer"}}>0</div>
@@ -68,32 +70,32 @@ const Navbar1 = () => {
       >
         <Nav.Item>
           <Nav.Link  style={{ color: "black" }} href="/home"onClick={()=>{}}>
-            Home
+           <Link to='/'>Home</Link> 
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link style={{ color: "black" }} eventKey="link-1"onClick={()=>{}}>
-          Scrubs
+          <Link to='/scrubs'>Scrubs</Link>    
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link style={{ color: "black" }} eventKey="link-2"onClick={()=>{}}>
-            Lab Coats
+            <Link to='/labCoats'>Lab Coats</Link>  
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link style={{ color: "black" }} eventKey="link-3" onClick={()=>{}}>
-            Fleece Jacket
+          <Link to='/fleeceJackets'> Fleece Jacket</Link>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link style={{ color: "black" }} eventKey="link-4" onClick={()=>{}}>
-            Medical Shoes
+          <Link to='/medicalShoes'> Medical Shoes</Link>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link style={{ color: "black" }} eventKey="link-5"onClick={()=>{}}>
-            Socks
+          <Link to='/socks'> Socks</Link>
           </Nav.Link>
         </Nav.Item>
       </Nav>
