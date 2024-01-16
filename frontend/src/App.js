@@ -2,7 +2,7 @@ import "./App.css";
 import Login from "./pages/LoginSignUp";
 import Navbar1 from "./components/Navbar/Navbar";
 import { useState} from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter,Routes, Route, Link } from "react-router-dom";
 import LoginSignUp from "./pages/LoginSignUp";
 import Home from "./pages/Home"
 import Cart from "./pages/Cart"
@@ -28,6 +28,7 @@ default(local.getItem("token"))
     // <userContext.Provider
     //   values={{ token, setToken, isLoggedIn, setIsLoggedIn }}
     // >
+    <>
       <div className="App">
         <Navbar1/>
         <Routes>
@@ -37,13 +38,13 @@ default(local.getItem("token"))
           <Route path="/fleeceJackets" element={<ShopCategory category="fleeceJacket"/>}/>
           <Route path="/medicalShoes" element={<ShopCategory category="shoes"/>}/>
           <Route path="/socks" element={<ShopCategory category="socks"/>}/>
-          <Route path="/product" element={<Products/>}>
-            <Route path=":productId" element={<Products/>}/>
-          </Route>
+          <Route path="/product/:productId" element={<Products/>}/>
+
           <Route path="/cart" element={<Cart/>}/>
           <Route path="/login" element={<LoginSignUp/>}/>
         </Routes>
       </div>
+      </>
     // </userContext.Provider>
   );
 }

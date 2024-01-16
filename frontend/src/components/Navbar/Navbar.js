@@ -69,33 +69,36 @@ const Navbar1 = () => {
         style={{ backgroundColor: "#0d6efd" }}
       >
         <Nav.Item>
-          <Nav.Link  style={{ color: "black" }} href="/home"onClick={()=>{}}>
-           <Link to='/'>Home</Link> 
+           <Nav.Link    href="/home"onClick={()=>{}}>
+          <Link to='/'style={{ color: "black",textDecoration:"none" }}  >Home</Link>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link style={{ color: "black" }} eventKey="link-1"onClick={()=>{}}>
-          <Link to='/scrubs'>Scrubs</Link>    
+          <Nav.Link   eventKey="link-1"onClick={()=>{}}>
+          <Link to='/scrubs'style={{ color: "black",textDecoration:"none" }}  >Scrubs  </Link>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link style={{ color: "black" }} eventKey="link-2"onClick={()=>{}}>
-            <Link to='/labCoats'>Lab Coats</Link>  
+          <Nav.Link  eventKey="link-2"onClick={()=>{}}>
+          <Link to='/labCoats'style={{ color: "black",textDecoration:"none" }}  >labCoats </Link>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link style={{ color: "black" }} eventKey="link-3" onClick={()=>{}}>
-          <Link to='/fleeceJackets'> Fleece Jacket</Link>
+          <Nav.Link  eventKey="link-3" onClick={()=>{}}>
+          <Link to='/fleeceJackets'style={{ color: "black",textDecoration:"none" }}  >Fleece Jackets </Link>
+
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link style={{ color: "black" }} eventKey="link-4" onClick={()=>{}}>
-          <Link to='/medicalShoes'> Medical Shoes</Link>
+          <Nav.Link eventKey="link-4" onClick={()=>{}}>
+          <Link to='/medicalShoes'style={{ color: "black",textDecoration:"none" }}  >Medical Shoes </Link>
+
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link style={{ color: "black" }} eventKey="link-5"onClick={()=>{}}>
-          <Link to='/socks'> Socks</Link>
+          <Nav.Link  eventKey="link-5"onClick={()=>{}}>
+          <Link to='/socks'style={{ color: "black",textDecoration:"none" }}  >Socks </Link>
+
           </Nav.Link>
         </Nav.Item>
       </Nav>
