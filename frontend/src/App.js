@@ -23,7 +23,7 @@ default(local.getItem("token"))
       values={{ token, setToken, isLoggedIn, setIsLoggedIn }}
     >
       <div className="App">
-        <h1>Hello, World!</h1>
+        
         <Navbar1/>
       </div>
     </userContext.Provider>
