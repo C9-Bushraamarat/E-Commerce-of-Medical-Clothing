@@ -1,13 +1,13 @@
 import "./App.css";
-import Login from "./pages/LoginSignUp";
 import Navbar1 from "./components/Navbar/Navbar";
 import { useState} from "react";
 import { BrowserRouter,Routes, Route, Link } from "react-router-dom";
-import LoginSignUp from "./pages/LoginSignUp";
+import LoginSignUp from "./pages/LoginSignUp/LoginSignUp";
 import Home from "./pages/Home"
 import Cart from "./pages/Cart"
 import ShopCategory from "./pages/ShopCategory"
 import Products from "./pages/Products"
+import Footer from "./components/Footer/Footer"
 // export const userContext = createContext("");
 
 
@@ -42,7 +42,9 @@ default(local.getItem("token"))
 
           <Route path="/cart" element={<Cart/>}/>
           <Route path="/login" element={<LoginSignUp/>}/>
+        
         </Routes>
+        <Footer/>
       </div>
       </>
     // </userContext.Provider>

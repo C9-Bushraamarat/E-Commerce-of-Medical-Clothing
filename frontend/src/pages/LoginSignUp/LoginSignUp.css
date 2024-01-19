@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+ 
+  *{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+
+}  
+
+ .form{
+    border-radius: 20px;
+    margin-top: 100px !important;
+    margin-left: 450px;
+    
+    width: 35% ;
+    background-color: white !important;
+    padding: 50px;
+    justify-content: center; 
+    justify-items: center;
+} 
+.btn btn-primary mt-5{
+    color:black;
+    width: 100%;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(75,14,154,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+Form.Control{
+    color: rgba(0,0,0,.87);
+    border-bottom-color: rgba(0,0,0,.42);
+    box-shadow: none !important;
+    border: none;
+    border-bottom: 1px solid;
+    border-radius: 4px 4px 0 0;}
+
+    h1{
+        font-size: 2rem !important;
+        font-weight: 700;
+        background-color:white;
+     } 
+    

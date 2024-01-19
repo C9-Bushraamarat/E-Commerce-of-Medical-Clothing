@@ -14,8 +14,10 @@ import { Link } from "react-router-dom";
 
 const Navbar1 = () => {
   const[menu,setMenu]=useState("Home")
-  return (
+  const[color,setColor]=useState('');
+    return (
     <>
+    <div style={{background:color}}>
       <Navbar className="bg-body-tertiary" >
         <Container>
           <Navbar.Brand href="#home">
@@ -50,8 +52,8 @@ const Navbar1 = () => {
             </Row>
           </Form>
           <div className="nav-login-cart" style={{display:"flex",gap:"1rem",float:"right",alignItems:"center"}}>
-           
-             <Link to='/login'><Button variant="outline-dark">Login</Button></Link> 
+           {localStorage.getItem('auth-token')?<button onClick={()=>{localStorage.removeItem('auth-token');window.location.replace('/')}}>Logout</button>: <Link to='/login'onClick={()=>{setColor(' linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(75,14,154,1) 35%, rgba(0,212,255,1) 100%)')}}><Button variant="outline-dark">Login</Button></Link>}
+             
               <div style={{cursor:"pointer"}} >
              <Link to='/cart'><img src={cart} alt="" height="30px" width="30px" /></Link> 
             
@@ -102,31 +104,9 @@ const Navbar1 = () => {
           </Nav.Link>
         </Nav.Item>
       </Nav>
+      </div>
     </>
   );
-  // return (
-
-  //   <div className='navbar'>
-  //       <div className='nav-logo'>
-  //           <img src={logo}alt=''/>
-  //           <p>UNIFORMSHOP</p>
-  //       </div>
-  //       <ul className='nav-menu'>
-  //           <li>Scrub Top</li>
-  //           <li>Scrub Trousers</li>
-  //           <li>Scrub Sets</li>
-  //           <li>Scrub Caps</li>
-  //           <li>Lab Coats</li>
-  //           <li>Fleece Jacket</li>
-  //           <li>Medical Shoes</li>
-  //           <li>Socks</li>
-  //       </ul>
-  //       <div className='nav-login-cart'>
-  //           <button>Login</button>
-  //           <img src={cart} alt=''/>
-  //       </div>
-  //   </div>
-  // )
 };
 
 export default Navbar1;
