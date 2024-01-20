@@ -1,59 +1,60 @@
 import React ,{useState}from 'react'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import axios from "axios"
 import './LoginSignUp.css'
-import { json } from 'react-router-dom';
 
 const LoginSignUp = () => {
   const[state,setState]=useState('Login')
-  const[formData,setFormData]=useState({
-    firstName:"",
-    lastName:"",
-    email:"",
-    password:""
-  })
-  const login=async()=>{
-console.log('login',formData)
-let responseData
-await fetch('http://localhost:5000/login',{
-  method:'POST',
-  headers:{
-  Accept:'Application/form-Data',
-  'Content-Type':'application/json'
-},
-body: json.Stringify(formData),
-  }).then((result)=>{responseData.json()}).then((data)=>responseData=data)
-  if(responseData.success){
-    localStorage.setItem('auth-token',responseData.token);
-    window.location.replace("/")
-    
-  }else{
-    alert(responseData.errors)
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handlefirstName = (e) => {
+    setFirstName(e.target.value);
+  };
+  const handlelastName = (e) => {
+    setLastName(e.target.value);
+  };
+
+ 
+
+ 
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  
+  const login=()=>{
+    console.log('login')
+
+    axios
+    .post("http://localhost:5000/users/login",{  email, password})
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
-  }
-  const signup=async()=>{
-console.log('signup',formData)
-let responseData
-await fetch('http://localhost:5000/signup',{
-  method:'POST',
-  headers:{
-  Accept:'Application/form-Data',
-  'Content-Type':'application/json'
-},
-body: JSON.Stringify(formData),
-  }).then((result)=>{responseData.json()}).then((data)=>responseData=data)
-  if(responseData.success){
-    localStorage.setItem('auth-token',responseData.token);
-    window.location.replace("/")
-    
-  }else{
-    alert(responseData.errors)
-  }
+  const signup=()=>{
+console.log('signup')
+axios
+.post("http://localhost:5000/users/register",{  firstName, lastName,email, password})
+.then((res) => {
+  console.log(res.data);
+})
+.catch((err) => {
+  console.log(err);
+});
   }
 
-  const changeHandler=(e)=>{
-setFormData({...formData,[e.target.name]:e.target.value})
-  }
+  
   return (
     <>
    <div className='back'>
@@ -65,8 +66,8 @@ setFormData({...formData,[e.target.name]:e.target.value})
          <Form.Label></Form.Label>
          <Form.Control
          name='firstName'
-         value={formData.firstName}
-         onChange={changeHandler}
+         
+         onChange={handlefirstName}
            type="text"
            width="10%"
            placeholder="First Name"
@@ -77,8 +78,8 @@ setFormData({...formData,[e.target.name]:e.target.value})
          <Form.Label></Form.Label>
          <Form.Control
          name='lastName'
-         value={formData.lastName}
-         onChange={changeHandler}
+         
+         onChange={handlelastName}
            type="text"
            placeholder="Last Name"
            
@@ -88,8 +89,8 @@ setFormData({...formData,[e.target.name]:e.target.value})
          <Form.Label></Form.Label>
          <Form.Control
          name='email'
-         value={formData.email}
-         onChange={changeHandler}
+         
+         onChange={handleEmail}
            type="email"
            placeholder="name@example.com"
            
@@ -99,8 +100,8 @@ setFormData({...formData,[e.target.name]:e.target.value})
          <Form.Label></Form.Label>
          <Form.Control
          name='password'
-         value={formData.password}
-         onChange={changeHandler}
+         
+         onChange={handlePassword}
            type="password"
            placeholder="password"
         />

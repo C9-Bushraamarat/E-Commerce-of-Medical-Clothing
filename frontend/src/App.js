@@ -6,38 +6,31 @@ import LoginSignUp from "./pages/LoginSignUp/LoginSignUp";
 import Home from "./pages/Home"
 import Cart from "./pages/Cart"
 import ShopCategory from "./pages/ShopCategory"
-import Products from "./pages/Products"
+import Products from "./pages/Product"
 import Footer from "./components/Footer/Footer"
-// export const userContext = createContext("");
+import scrubBanner from "../src/components/Images/scrubBanner.png"
+import labBanner from "./components/Images/labBanner.png"
+import jacketbanner from "./components/Images/jacketbanner.png"
+import shoesBanner from "./components/Images/shoesBanner.png"
+import socksBanner from "./components/Images/socksBanner.png"
 
 
-// import useState , Routes , Route, createcontext
-//  export default userContext=create context()
+
+
 function App() {
-  const [token, setToken] = useState(localStorage.getItem("token"));
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  /*   states to share form app like token 
-default(local.getItem("token"))
-  , is logged in
-  default false  */
+ 
   return (
-    /* 
-    1-context.provders values={{toke, setToke, logeedin , setLoggedin}}
-    2- Routes ,Routes for each element
-    */
-    // <userContext.Provider
-    //   values={{ token, setToken, isLoggedIn, setIsLoggedIn }}
-    // >
+   
     <>
       <div className="App">
         <Navbar1/>
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/scrubs" element={<ShopCategory category="scrub"/>}/>
-          <Route path="/labCoats" element={<ShopCategory category="labCoat"/>}/>
-          <Route path="/fleeceJackets" element={<ShopCategory category="fleeceJacket"/>}/>
-          <Route path="/medicalShoes" element={<ShopCategory category="shoes"/>}/>
-          <Route path="/socks" element={<ShopCategory category="socks"/>}/>
+          <Route path="/scrubs" element={<ShopCategory banner={scrubBanner}/>}/>
+          <Route path="/labCoats" element={<ShopCategory banner={labBanner}/>}/>
+          <Route path="/fleeceJackets" element={<ShopCategory banner={jacketbanner}/>}/>
+          <Route path="/medicalShoes" element={<ShopCategory  banner={shoesBanner} height='20vh'/>}/>
+          <Route path="/socks" element={<ShopCategory banner={socksBanner}/>}/>
           <Route path="/product/:productId" element={<Products/>}/>
 
           <Route path="/cart" element={<Cart/>}/>
@@ -47,7 +40,6 @@ default(local.getItem("token"))
         <Footer/>
       </div>
       </>
-    // </userContext.Provider>
   );
 }
 
