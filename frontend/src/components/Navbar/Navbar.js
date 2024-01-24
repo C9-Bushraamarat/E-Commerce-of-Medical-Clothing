@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import "./Navbar.css";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
@@ -10,11 +10,27 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import text from "../Images/text.png";
 import cart from "../Images/cart.ico";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const Navbar1 = () => {
+  const navigate=useNavigate()
   const[menu,setMenu]=useState("Home")
   const[color,setColor]=useState('');
+  const[categories,setCategories]=useState([]);
+  const getAllCategory=()=>{
+axios.get('http://localhost:5000/categories/getcategory').then((result)=>{
+console.log(result.data.categories)
+  setCategories(result.data.categories)
+}).catch((err)=>{
+  console.log(err)
+})
+  }
+  useEffect(() => {
+   
+getAllCategory();
+  },[])
+
     return (
     <>
     <div style={{background:color}}>
@@ -75,11 +91,26 @@ const Navbar1 = () => {
           <Link to='/'style={{ color: "black",textDecoration:"none" }}  >Home</Link>
           </Nav.Link>
         </Nav.Item>
-        <Nav.Item>
-          <Nav.Link   eventKey="link-1"onClick={()=>{}}>
-          <Link to='/scrubs'style={{ color: "black",textDecoration:"none" }}  >Scrubs  </Link>
+        {categories&&categories.map((category,i)=>{
+          return(<>
+           <Nav.Item>
+          <Nav.Link   eventKey="link-1"onClick={(e)=>{navigate(`/item/${category._id}`)}}>
+          <Link  style={{ color: "black",textDecoration:"none" }} >{category.name}</Link>
           </Nav.Link>
         </Nav.Item>
+          
+          </>)
+        })}
+       
+      </Nav>
+      </div>
+    </>
+  );
+};
+
+export default Navbar1;
+/* 
+
         <Nav.Item>
           <Nav.Link  eventKey="link-2"onClick={()=>{}}>
           <Link to='/labCoats'style={{ color: "black",textDecoration:"none" }}  >labCoats </Link>
@@ -103,10 +134,7 @@ const Navbar1 = () => {
 
           </Nav.Link>
         </Nav.Item>
-      </Nav>
-      </div>
-    </>
-  );
-};
 
-export default Navbar1;
+
+
+*/

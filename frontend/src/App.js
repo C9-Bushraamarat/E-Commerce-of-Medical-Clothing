@@ -5,7 +5,7 @@ import { BrowserRouter,Routes, Route, Link } from "react-router-dom";
 import LoginSignUp from "./pages/LoginSignUp/LoginSignUp";
 import Home from "./pages/Home"
 import Cart from "./pages/Cart"
-import ShopCategory from "./pages/ShopCategory"
+import ProductCategory from "./components/productCategory";
 import Products from "./pages/Product"
 import Footer from "./components/Footer/Footer"
 import scrubBanner from "../src/components/Images/scrubBanner.png"
@@ -13,6 +13,7 @@ import labBanner from "../src/components/Images/labBanner.png"
 import jacketbanner from "../src/components/Images/jacketbanner.png"
 import shoesBanner from "../src/components/Images/shoesBanner.png"
 import socksBanner from "../src/components/Images/socksBanner.png"
+import Details from "./components/Details";
 
 
 
@@ -31,7 +32,9 @@ function App() {
           <Route path="/fleeceJackets" element={<img alt='' src={jacketbanner}/>}/>
           <Route path="/medicalShoes" element={<img alt='' src={shoesBanner} />}/>
           <Route path="/socks" element={<img alt='' src={socksBanner}/>}/>
-          <Route path="/product/" element={<Products/>}/>
+          <Route path="/product" element={<Products/>}/>
+          <Route path="/item/:id" element={<ProductCategory/>}/>
+          <Route path="/product/:id" element={<Details/>}/>
 
           <Route path="/cart" element={<Cart/>}/>
           <Route path="/login" element={<LoginSignUp/>}/>

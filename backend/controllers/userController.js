@@ -15,12 +15,13 @@ const Register = (req, res) => {
   newUser
     .save()
     .then(async (responce) => {
-      const result = await new cartModel({
+      const result =  new cartModel({
         userId: responce._id,
         products: [],
-        total: 0,
+        // total: 0,
+        
       });
-
+await result.save()
       res.status(201).json({
         cart:result,
         responce: responce,
